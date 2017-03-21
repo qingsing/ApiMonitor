@@ -41,7 +41,7 @@ class Client  extends guzzlehttp
         } catch (\Exception $e) {
             $this->errorMsg = $e->getMessage();
         }
-        Analyze::monitor($this);
+        $this->analyze->monitor($this);
         if ($this->errorMsg) {
             throw $e;
         } else {
