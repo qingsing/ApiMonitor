@@ -31,7 +31,7 @@ class Analyze
         return true;
     }
 
-    public function monitor(HttpClient $httpClient)
+    public function monitor(Client $httpClient)
     {
         $this->http = $httpClient;
         $this->start_time = $this->http->startTime;
