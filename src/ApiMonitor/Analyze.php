@@ -18,13 +18,14 @@ class Analyze
      * @param string $errorMsg
      * @return bool
      */
-    public function log($uri, $method, $statusCode, $time, $errorMsg = '')
+    public function log($uri, $method, $statusCode, $time, $retSuccess,$errorMsg = '')
     {
         DB::table('api_monitor')->insert([
             'uri' => $uri,
             'method' => $method,
             'time' => $time,
             'status_code' => $statusCode,
+            'ret_success' => $retSuccess,
             'error_msg' => $errorMsg,
             'created_at' => date('Y-m-d H:i:s'),
         ]);
@@ -36,7 +37,7 @@ class Analyze
         $this->http = $httpClient;
         $this->start_time = $this->http->startTime;
         $this->end_time = microtime();
-        return $this->log($this->http->uri, $this->http->method, $this->http->statusCode, $this->_diffTime(), $this->http->errorMsg);
+        return $this->log($this->http->uri, $this->http->method, $this->http->statusCode, $this->_diffTime(),$this->http->retSuccess, $this->http->errorMsg);
     }
 
 
