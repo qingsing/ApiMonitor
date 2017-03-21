@@ -67,7 +67,7 @@ class Client extends guzzlehttp
             return true;
         }
 
-        $content = $http_ret->getBody()->getContents();
+        $content = (array)json_decode($http_ret->getBody()->getContents());
         if ($content) {
             if (isset($content[$successTag[0]]) && $content[$successTag[0]] == $successTag[1]) {
                 $this->retSuccess = self::RET_SUCCESS;
